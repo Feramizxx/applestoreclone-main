@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { signIn, signOut, useSession } from "next-auth/react";
 import {
   SearchIcon,
   PlusCircleIcon,
@@ -17,7 +17,7 @@ import {
 
 function Header() {
   const items = useSelector(selectBasketItems);
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
   return (
     <header className="sticky flex w-full top-0 items-center justify-between bg-[#E7ECEE] p-4 z-40">
@@ -54,23 +54,8 @@ function Header() {
             <ShoppingBagIcon className="headerIcon" />
           </div>
         </Link>
-       
-        {session ? (
-          <Image
-            src={
-              session.user?.image ||
-              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-            }
-            alt=""
-            className="cursor-pointer rounded-full"
-            width={34}
-            height={34}
-            onClick={() => signOut()}
-          />
-        ) : (
-          <UserIcon className="headerIcon" onClick={() => signIn()} />
-        )}
-      
+
+        <UserIcon className="headerIcon" />
       </div>
     </header>
   );

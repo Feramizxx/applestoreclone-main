@@ -7,18 +7,17 @@ import { fetchCategories } from "../utils/fetchCategories";
 import { fetchProducts } from "../utils/fetchProducts";
 import Product from "../components/Product";
 import Basket from "../components/Basket";
-import { getSession } from "next-auth/react";
-import { Session } from "next-auth";
+// import { getSession } from "next-auth/react";
+// import { Session } from "next-auth";
 import dynamic from "next/dynamic";
 
 interface Props {
   categories: Category[];
   products: Product[];
-  session : Session | null;
 }
 
 const Home = ({ categories, products }: Props) => {
-  console.log('My Application Version', process.env.NEXT_PUBLIC_VERSION);
+  console.log("My Application Version", process.env.NEXT_PUBLIC_VERSION);
   const showProduct = (category: number) => {
     return products
       .filter((product) => product.category._ref === categories[category]._id)
@@ -80,18 +79,18 @@ const Home = ({ categories, products }: Props) => {
   );
 };
 export default dynamic(() => Promise.resolve(Home), {
-  ssr: false
+  ssr: false,
 });
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
   const categories = await fetchCategories();
   const products = await fetchProducts();
-  const session = await getSession(context);
   return {
     props: {
       categories,
       products,
-      session
     },
   };
 };

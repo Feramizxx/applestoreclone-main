@@ -60,7 +60,7 @@ function Checkout() {
 
         {items.length > 0 && (
           <div className="mx-5 md:mx-8">
-            {Object.entries(groupedItemsInBasket) ? Object.entries(groupedItemsInBasket).map(([key, items])  => (
+            {groupedItemsInBasket ? Object.entries(groupedItemsInBasket).map(([key, items])  => (
               <CheckoutProduct key={key} items={items} id={key} />
             )) :  []}
 

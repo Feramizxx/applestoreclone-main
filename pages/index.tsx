@@ -15,7 +15,6 @@ interface Props {
 }
 
 const Home = ({ categories, products }: Props) => {
-  console.log("My Application Version", process.env.NEXT_PUBLIC_VERSION);
   const showProduct = (category: number) => {
     return products ? products
       .filter((product) => product.category._ref === categories[category]._id)

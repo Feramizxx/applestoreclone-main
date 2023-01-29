@@ -7,8 +7,6 @@ import { fetchCategories } from "../utils/fetchCategories";
 import { fetchProducts } from "../utils/fetchProducts";
 import Product from "../components/Product";
 import Basket from "../components/Basket";
-// import { getSession } from "next-auth/react";
-// import { Session } from "next-auth";
 import dynamic from "next/dynamic";
 
 interface Props {
@@ -19,11 +17,11 @@ interface Props {
 const Home = ({ categories, products }: Props) => {
   console.log("My Application Version", process.env.NEXT_PUBLIC_VERSION);
   const showProduct = (category: number) => {
-    return products
+    return products ? products
       .filter((product) => product.category._ref === categories[category]._id)
       .map((product) => {
         return <Product key={product._id} product={product} />;
-      });
+      }) : [];
   };
 
   return (
@@ -48,7 +46,7 @@ const Home = ({ categories, products }: Props) => {
 
           <Tab.Group>
             <Tab.List className="flex justify-center">
-              {categories.map((category) => {
+              {categories ? categories.map((category) => {
                 return (
                   <Tab
                     key={category._id}
@@ -64,7 +62,7 @@ const Home = ({ categories, products }: Props) => {
                     {category.title}
                   </Tab>
                 );
-              })}
+              }) : []}
             </Tab.List>
             <Tab.Panels className="mx-auto max-w-fit pt-10 pb-24 sm:px-4">
               <Tab.Panel className="tabPanel">{showProduct(0)}</Tab.Panel>

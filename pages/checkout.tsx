@@ -60,9 +60,9 @@ function Checkout() {
 
         {items.length > 0 && (
           <div className="mx-5 md:mx-8">
-            {Object.entries(groupedItemsInBasket).map(([key, items]) => (
+            {Object.entries(groupedItemsInBasket) ? Object.entries(groupedItemsInBasket).map(([key, items])  => (
               <CheckoutProduct key={key} items={items} id={key} />
-            ))}
+            )) :  []}
 
             <div className="my-12 mt-6 ml-auto max-w-3xl">
               <div className="divide-y divide-gray-300">

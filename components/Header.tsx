@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectBasketItems } from "../redux/basketSlice";
-// import { signIn, signOut, useSession } from "next-auth/react";
 import {
   SearchIcon,
   PlusCircleIcon,

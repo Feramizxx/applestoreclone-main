@@ -82,9 +82,7 @@ export default dynamic(() => Promise.resolve(Home), {
   ssr: false,
 });
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const categories = await fetchCategories();
   const products = await fetchProducts();
   return {

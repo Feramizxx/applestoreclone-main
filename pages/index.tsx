@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Landing from "../components/Landing";
 import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next/types";
 import { Tab } from "@headlessui/react";
 import { fetchCategories } from "../utils/fetchCategories";
 import { fetchProducts } from "../utils/fetchProducts";
@@ -85,7 +86,7 @@ export default dynamic(() => Promise.resolve(Home), {
   ssr: false,
 });
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const categories: Category[] = await fetchCategories();
   const products: Product[] = await fetchProducts();
   return {
